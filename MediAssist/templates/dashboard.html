@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+MediAssist
+</title>
+
+<link
+rel="stylesheet"
+href="../static/css/dashboard.css">
+<link
+rel="stylesheet"
+href="../static/css/wellness.css">
+
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+rel="stylesheet">
+
+</head>
+
+
+<body>
+
+<!-- BLURS -->
+
+<div class="blur blur1"></div>
+
+<div class="blur blur2"></div>
+
+
+
+<!-- NAVBAR -->
+
+<header>
+
+<div class="date-time">
+
+<h3 id="date">
+
+Thursday,
+May 15
+
+</h3>
+
+
+<p id="clock">
+
+10:42 PM
+
+</p>
+
+</div>
+
+
+
+<!-- LOGO -->
+<div class="logo-container">
+<img src="../static/images/logo.png" class="logo">
+</div>
+
+
+
+
+<!-- RIGHT NAV -->
+
+<div class="right-nav">
+
+<label class="switch">
+
+<input
+type="checkbox"
+id="themeToggle">
+
+<span
+class="slider">
+
+</span>
+
+</label>
+
+<div
+class="profile-btn"
+id="profileBtn">
+
+</div>
+
+</div>
+
+</header>
+
+
+
+
+<!-- PROFILE POPUP -->
+
+<div
+
+class="profile-popup"
+
+id="profilePopup"
+
+>
+
+<h2>
+
+Profile
+
+</h2>
+
+
+<div class="line"></div>
+
+<p>
+
+<strong>
+
+Name:
+
+</strong>
+
+<span id="profileName">
+
+</span>
+
+</p>
+
+
+
+<p>
+
+<strong>
+
+Age:
+
+</strong>
+
+<span id="profileAge">
+
+</span>
+
+</p>
+
+
+
+<p>
+
+<strong>
+
+Gender:
+
+</strong>
+
+<span id="profileGender">
+
+</span>
+
+</p>
+
+<div class="line"></div>
+
+
+<button
+class="logout-btn"
+onclick="logout()"
+>
+
+Logout
+
+</button>
+
+</div>
+
+
+
+
+<!-- MAIN -->
+
+<main>
+
+
+<section
+class="medicine-section">
+
+<div
+class="section-title">
+
+Your Medicines
+
+</div>
+<div
+id="streakCount"
+
+style="
+
+font-size:20px;
+margin-bottom:20px;
+
+">
+
+🔥 Streak:
+0 days
+
+</div>
+<div
+id="progressBox"
+
+style="
+margin-bottom:20px;
+">
+
+<h3>
+
+Today's Progress
+
+</h3>
+
+
+<div
+style="
+background:#ddd;
+height:12px;
+border-radius:20px;
+overflow:hidden;
+">
+
+<div
+
+id="progressBar"
+
+style="
+width:0%;
+height:100%;
+background:#22c55e;
+">
+
+</div>
+
+</div>
+
+
+<p
+id="progressText">
+
+0%
+
+</p>
+
+</div>
+
+<!-- ONLY ONE WRAPPER -->
+
+<div
+
+class="medicine-wrapper"
+
+id="medicineWrapper"
+
+>
+
+
+<!-- JS WILL INSERT CARDS -->
+
+
+<div
+
+class="add-card"
+
+id="openPopup"
+
+>
+
+<span>
+
++
+
+</span>
+
+
+<p>
+
+Add Medicine
+
+</p>
+
+
+</div>
+
+
+</div>
+
+<div class="wellness-section">
+
+<h1 class="wellness-title">
+✨ Wellness Insights
+</h1>
+
+<div id="wellnessCards">
+
+<div class="wellness-card">
+Loading...
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- DAILY CHECK-IN -->
+<section class="checkin-section">
+
+<h1>
+How's your day today? 🌸
+</h1>
+
+<p>
+Come on, let's check how you're doing today
+</p>
+<button id="openCheckin">
+
+Start Check-in 🌸
+
+</button>
+
+
+<div
+id="questionContainer"
+style="display:none;"
+>
+
+</div>
+
+</section>
+<div class="graph-area">
+
+<h1>
+
+Let's see how you've been lately 🌙
+
+</h1>
+
+
+<p>
+
+Your weekly mood patterns & check-ins
+
+</p>
+
+
+
+<button
+id="toggleGraph"
+class="graph-btn"
+>
+
+📊 Weekly Progress
+
+</button>
+
+
+
+<div
+id="graphContainer"
+class="graph-container"
+>
+
+
+<div class="bar-graph">
+
+<div class="bar-box">
+<div id="mon" class="bar"></div>
+<p>Mon</p>
+</div>
+
+<div class="bar-box">
+<div id="tue" class="bar"></div>
+<p>Tue</p>
+</div>
+
+<div class="bar-box">
+<div id="wed" class="bar"></div>
+<p>Wed</p>
+</div>
+
+<div class="bar-box">
+<div id="thu" class="bar"></div>
+<p>Thu</p>
+</div>
+
+<div class="bar-box">
+<div id="fri" class="bar"></div>
+<p>Fri</p>
+</div>
+
+<div class="bar-box">
+<div id="sat" class="bar"></div>
+<p>Sat</p>
+</div>
+
+<div class="bar-box">
+<div id="sun" class="bar"></div>
+<p>Sun</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<section class="vault-section">
+
+<h1>
+
+📂 Health Vault
+
+</h1>
+
+
+<p>
+
+Store reports,
+prescriptions &
+medical files safely
+
+</p>
+
+
+
+<div class="upload-box">
+
+<input
+type="file"
+id="reportUpload"
+accept=".pdf,image/*"
+style="display:none;"
+>
+
+
+<button
+
+id="uploadBtn"
+
+>
+
++ Upload Report
+
+</button>
+
+</div>
+
+
+
+<div
+id="reportContainer"
+class="report-container"
+>
+
+</div>
+
+
+</section>
+
+
+
+<!-- HEALTHY BYTES -->
+
+<section class="healthy-section">
+
+<h1 class="healthy-title">
+🩺 Healthy Bytes
+</h1>
+
+<p class="healthy-sub">
+Daily wellness articles curated for you
+</p>
+
+<div
+class="healthy-container"
+id="healthyContainer"
+>
+
+</div>
+
+</section>
+
+
+<!-- POPUP -->
+
+<div
+class="checkin-popup"
+id="checkinPopup"
+>
+
+<div class="checkin-box">
+
+<h2>
+
+Today's Check-In
+
+</h2>
+
+
+<div id="questionContainer">
+
+<!-- JS inserts -->
+
+</div>
+
+
+<button id="submitCheckin">
+
+See Wellness →
+
+</button>
+
+
+<div id="resultBox">
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+
+
+
+
+<!-- POPUP -->
+
+<div
+
+class="popup-overlay"
+
+id="popupOverlay"
+
+>
+
+
+<div
+class="popup-box">
+
+
+<h2>
+
+Add Medicine
+
+</h2>
+
+
+
+<input
+
+type="text"
+
+id="medName"
+
+placeholder="Medicine Name"
+
+>
+
+
+
+<input
+
+type="time"
+
+id="medTime"
+
+>
+
+
+
+<div
+class="popup-buttons">
+
+
+<button
+id="cancelPopup">
+
+Cancel
+
+</button>
+
+
+
+<button
+id="addMedicineBtn">
+
+Add
+
+</button>
+
+
+</div>
+
+</div>
+
+</div>
+<div
+id="badgePopup"
+style="
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:30px;
+border-radius:25px;
+z-index:999;
+text-align:center;
+width:320px;
+box-shadow:0 0 30px rgba(0,0,0,.2);
+color:#111;
+">
+
+<button
+onclick="closeBadge()"
+style="
+position:absolute;
+top:10px;
+right:15px;
+border:none;
+background:none;
+font-size:24px;
+cursor:pointer;
+"
+>
+✕
+</button>
+
+
+<h2 id="badgeTitle"></h2>
+
+<p id="badgeText"></p>
+
+
+<button
+onclick="closeBadge()"
+style="
+margin-top:20px;
+padding:10px 20px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+"
+>
+
+YAYYY
+
+</button>
+</div>
+</div> <!-- badgePopup ends -->
+
+
+<link
+rel="stylesheet"
+href="../static/css/checkin.css"
+>
+
+<link
+rel="stylesheet"
+href="../static/css/healthvault.css"
+>
+
+
+<script
+src="../static/js/script.js"
+defer>
+</script>
+
+<script
+src="../static/js/darkmode.js"
+defer>
+</script>
+
+<script
+src="../static/js/checkin.js"
+defer>
+</script>
+
+<script
+src="../static/js/graph.js"
+defer>
+</script>
+
+<script
+src="../static/js/wellness.js"
+defer>
+</script>
+
+<script
+src="../static/js/healthvaults.js"
+defer>
+</script>
+
+<link
+rel="stylesheet"
+href="../static/css/healthybytes.css"
+>
+
+<script
+src="../static/js/healthybytes.js"
+defer>
+</script>
+
+</body>
+</html>
